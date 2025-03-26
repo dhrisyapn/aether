@@ -1,4 +1,4 @@
-package com.example.aether
+package com.aether.dhrisya.app
 
 import io.flutter.embedding.android.FlutterActivity
 
