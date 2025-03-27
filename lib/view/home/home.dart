@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Image.asset('assets/word-logo.png', height: 30),
+        centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
       ),

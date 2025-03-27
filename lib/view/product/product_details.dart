@@ -62,8 +62,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           child: IconButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            icon:
-                const Icon(Icons.arrow_back_ios, size: 20, color: Colors.black),
+            icon: Icon(Icons.arrow_back_ios, size: 20, color: primaryColor),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -90,8 +89,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   height: 10,
                 ),
                 Container(
-                  width: 353,
-                  height: 262,
+                  width: double.infinity,
+                  height: 260,
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
