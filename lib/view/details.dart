@@ -1,44 +1,95 @@
+import 'package:aether/model/provider/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+  final ProductDetails product;
+  const DetailsPage({super.key, required this.product});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  Widget ProductDetailCard(String title, String subtitle) {
+    return Row(
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.lato(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            letterSpacing: -0.80,
+          ),
+        ),
+        Text(
+          subtitle,
+          style: GoogleFonts.lato(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w300,
+            letterSpacing: -0.80,
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Details'),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: SizedBox(
+            child: Text(
+          'Product details',
+          style: GoogleFonts.lato(
+            color: const Color(0xFF5A6F52),
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            letterSpacing: -0.90,
+          ),
+        )),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: IconButton(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            icon: Icon(Icons.arrow_back_ios, size: 20, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+        ),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Alchemist',
+                widget.product.title,
                 style: GoogleFonts.lato(
                   color: const Color(0xFFD57A3B),
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
-                  letterSpacing: -1.40,
+                  letterSpacing: -1.10,
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
                 width: 353,
                 height: 262,
                 decoration: ShapeDecoration(
-                  color: const Color(0x4C5A6F52),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       width: 1,
@@ -47,12 +98,13 @@ class _DetailsPageState extends State<DetailsPage> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
+                child: Image.network(widget.product.image),
               ),
               SizedBox(
                 height: 20,
               ),
               Text(
-                'The Alchemist is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it became a widely translated international bestseller.',
+                widget.product.description,
                 style: GoogleFonts.lato(
                   color: const Color(0xFF5A6F52),
                   fontSize: 18,
@@ -64,12 +116,14 @@ class _DetailsPageState extends State<DetailsPage> {
                 height: 20,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        '₹399',
+                        '\$${widget.product.price}',
                         style: GoogleFonts.lato(
                           color: const Color(0xFF5A6F52),
                           fontSize: 26,
@@ -81,7 +135,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         width: 5,
                       ),
                       Text(
-                        '(10% off)',
+                        '(${widget.product.discountPercentage}% off)',
                         style: GoogleFonts.lato(
                           color: Colors.black,
                           fontSize: 16,
@@ -92,10 +146,11 @@ class _DetailsPageState extends State<DetailsPage> {
                     ],
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Icon(Icons.star, color: const Color(0xFF5A6F52)),
                       Text(
-                        '4.3',
+                        widget.product.rating.toString(),
                         style: TextStyle(
                           color: const Color(0xFF5A6F52),
                           fontSize: 22,
@@ -109,14 +164,34 @@ class _DetailsPageState extends State<DetailsPage> {
                 ],
               ),
               Text(
-                'only 10 left!',
+                'only ${widget.product.stock} left!',
                 style: GoogleFonts.lato(
                   color: const Color(0xFFD57A3B),
                   fontSize: 16,
                   fontWeight: FontWeight.w300,
                   letterSpacing: -0.80,
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Product details',
+                style: GoogleFonts.lato(
+                  color: const Color(0xFF5A6F52),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.90,
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              ProductDetailCard('Brand  : ', widget.product.brand),
+              ProductDetailCard('Id  : ', widget.product.id),
+              ProductDetailCard('Weight  : ', widget.product.weight),
+              ProductDetailCard('Dimensions  : ', widget.product.dimensions),
+              ProductDetailCard('Warranty  : ', widget.product.warranty),
             ],
           ),
         ),
