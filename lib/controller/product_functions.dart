@@ -27,10 +27,10 @@ class ProductFunctions {
             rating: product['rating'].toDouble(),
             brand: product['brand'] ?? 'not available',
             stock: product['stock'].toString(),
-            id: product['id'].toString(),
-            weight: product['weight'].toString(),
+            id: product['sku'].toString(),
+            weight: '${product['weight']}g'.toString(),
             dimensions:
-                "${product['dimensions']['width']}x${product['dimensions']['height']}x${product['dimensions']['depth']}",
+                "${product['dimensions']['width']} x ${product['dimensions']['height']} x ${product['dimensions']['depth']}",
             warranty: product['warrantyInformation'] ?? 'No warranty info',
           ),
         );
