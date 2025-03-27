@@ -1,4 +1,5 @@
 import 'package:aether/model/provider/product_provider.dart';
+import 'package:aether/view/details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -109,7 +110,13 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Icon(Icons.arrow_forward_ios, color: Color(0xFF5A6F52)),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => DetailsPage()));
+                  },
+                  child:
+                      Icon(Icons.arrow_forward_ios, color: Color(0xFF5A6F52))),
             ],
           ),
         ),

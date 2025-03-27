@@ -25,7 +25,7 @@ class ProductFunctions {
             image: product['images'][0],
             discountPercentage: product['discountPercentage'].toString(),
             rating: product['rating'].toDouble(),
-            brand: product['brand'],
+            brand: product['brand'] ?? 'not available',
             stock: product['stock'].toString(),
             id: product['id'].toString(),
             weight: product['weight'].toString(),
