@@ -112,8 +112,11 @@ class ProductWidget extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => DetailsPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DetailsPage(product: product)));
                   },
                   child:
                       Icon(Icons.arrow_forward_ios, color: Color(0xFF5A6F52))),
